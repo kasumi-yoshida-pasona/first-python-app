@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="row">
+
   <div class="col-md-9 my-5">
     <div class="card">
       <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
@@ -14,6 +15,20 @@
         <a href="{% url 'myapp:post_update' object.pk %}" class="btn btn-primary">更新</a>
         <a href="{% url 'myapp:post_delete' object.pk %}" class="btn btn-danger">削除</a>
       </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ object.category }}</h5>
+        <p class="card-text">このカテゴリーの他の記事</p>
+      </div>
+      <ul class="list-group">
+        {% for item in category_posts %}
+          <li class="list-group-item"><a href="{% url 'myapp:post_detail' item.id %}">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </div>
